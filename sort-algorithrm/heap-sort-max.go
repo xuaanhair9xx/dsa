@@ -60,12 +60,13 @@ func buildMaxHeap(arr []interface{}, parentNode int) {
 		leftNode := 2*i + 1
 		rightNode := 2*i + 2
 		largest := i
-	
-		if cvType(arr[largest]) < cvType(arr[leftNode]) {
+		n := len(arr)
+		
+		if leftNode < n && cvType(arr[largest]) < cvType(arr[leftNode]) {
 			largest = leftNode
 		}
 	
-		if cvType(arr[largest]) < cvType(arr[rightNode]) {
+		if rightNode < n && cvType(arr[largest]) < cvType(arr[rightNode]) {
 			largest = rightNode
 		}
 	
