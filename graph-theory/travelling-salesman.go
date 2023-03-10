@@ -53,11 +53,15 @@ func solve(graph [][]int, memo [5][32]int, start int, n int ) [5][32]int {
 				}
 				// State is like a child of subset
 				// Ex: subset: 1011, state: 1001 => route: 0 -> 3 -> 1, state: 0011 => route: 0 -> 1 -> 3
+				// Ex: subset: 1101, state: 1001 => route: 0 -> 3 -> 2, state: 0101 => route: 0 -> 2 -> 3
 				// subset: 1111, state: 1101 => route: 0 -> 2 -> 3 -> 1 | 0 -> 3 -> 2 -> 1
+				// Subset is to find the minimun distance going through bit "1"
+				//	- ex: subset: 1101 => is to find the min distance going through 0, 2, 3
 				// e like a destination after start.
 				// next like a destination after e.
 				state := subset ^ (1 << next)
 				minDist := MAX_INT
+				// this iterate is to find the min distance that is found by state.
 				for e := 0; e < n; e ++ {
 					fmt.Printf("subset: %b, state: %b, next: %d, e: %d  \n", subset,state, next, e)
 					if e == start || e == next || notIn(e, subset) {
@@ -71,6 +75,8 @@ func solve(graph [][]int, memo [5][32]int, start int, n int ) [5][32]int {
 				}
 				fmt.Printf("------memo[next(%d)][subset(%b)](%d) = minDist(%d) \n",next, subset, memo[next][subset], minDist )
 				memo[next][subset] = minDist
+				// memo[1][111] mean go through 3 points: 0,1,2, but go to 2 before 1: 0 -> 2 -> 1, 1 is end point
+				// memo[2][111] mean go through 3 points: 0,1,2, but go to 1 before 2: 0 -> 1 -> 2, 2 is end point
 			}
 		}
 	}
