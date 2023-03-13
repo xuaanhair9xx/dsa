@@ -5,7 +5,7 @@ import(
 )
 
 func main() {
-	arr := []int {1, 3, 4, 0, 5, 0, 9, 2}
+	arr := []int {1, 3, 4, 0, 5, 0, 9, 2, 15}
 	fmt.Println(longestPathSubproblem(arr));
 	fmt.Println(recursive(arr, len(arr) - 1))
 }
@@ -14,19 +14,10 @@ func recursive(arr []int, n int) int {
 	if n == 0 {
 		return 1
 	}
-    var count int = 1
 	if arr[n] > arr[n-1] {
-		count = 1 + recursive(arr, n-1)
+		return 1 + recursive(arr, n-1)
 	}
-	return max(count, recursive(arr, n-1))
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	} else {
-		return b
-	}
+	return recursive(arr, n-1)
 }
 
 func longestPathSubproblem(arr []int) int {
