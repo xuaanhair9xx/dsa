@@ -6,18 +6,23 @@ import(
 
 func main() {
 	arr := []int {1, 3, 4, 0, 5, 0, 9, 2, 15}
-	fmt.Println(longestPathSubproblem(arr));
-	fmt.Println(recursive(arr, len(arr) - 1))
+	//fmt.Println(longestPathSubproblem(arr));
+	recursive(arr, len(arr))
+	topDown(arr, len(arr))
 }
 
-func recursive(arr []int, n int) int {	
-	if n == 0 {
-		return 1
+func recursive(arr []int, n int) {	
+	var dfs func(int) int
+	dfs = func(i int) int {
+		if i == 0 {
+			return 1
+		}
+		if arr[i] > arr[i-1] {
+			return 1 + dfs(i-1)
+		}
+		return dfs(i-1)	
 	}
-	if arr[n] > arr[n-1] {
-		return 1 + recursive(arr, n-1)
-	}
-	return recursive(arr, n-1)
+	fmt.Println("Recursive approach: ", dfs(n-1))
 }
 
 func longestPathSubproblem(arr []int) int {
