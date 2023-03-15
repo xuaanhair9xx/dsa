@@ -6,7 +6,6 @@ import(
 
 func main() {
 	arr := []int {1, 3, 4, 0, 5, 0, 9, 2, 15, 1, 16}
-	fmt.Println(longestPathSubproblem(arr));
 	recursive(arr, len(arr))
 	bottomUp(arr, len(arr))
 	optimal(arr, len(arr))
