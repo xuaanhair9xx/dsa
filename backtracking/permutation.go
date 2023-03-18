@@ -11,6 +11,8 @@ func main() {
 	used = make(map[int]bool, n)
 	arr = make([]int, n)
 	permutation(0)
+	fmt.Println(222)
+	fmt.Println(arr)
 }
 
 func permutation(pos int) {
@@ -23,6 +25,7 @@ func permutation(pos int) {
 			used[i] = true
 			permutation(pos + 1)
 			used[i] = false
+			arr[pos] = 0
 		}
 	}
 }

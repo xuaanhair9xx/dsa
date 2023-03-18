@@ -92,14 +92,20 @@ func combination(r, n int) []int{
 	return subsets
 }
 
+// Back tracking.
 func combinations(set, at, r, n int) {
 	if r == 0 {
+		fmt.Printf("zzzz:  %d %d %b \n",  r, at, set)
 		subsets = append(subsets, set)
 	} else {
 		for i := at; i < n; i ++ {
 			set = set | (1 << i)
+			fmt.Printf("aa:  %d %d %b %d \n",  r, at, set, i)
 			combinations(set, i + 1, r - 1, n)
+			fmt.Printf("bb:  %d %d %b %d \n",  r, at, set, i)
 			set = set & (^(1 << i))
+			fmt.Printf("bb2:  %d %d %b %d \n",  r, at, set, i)
+
 		} 
 	}
 }
